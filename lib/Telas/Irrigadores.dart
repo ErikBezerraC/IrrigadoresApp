@@ -11,9 +11,9 @@ class _IrrigadoresState extends State<Irrigadores> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xff87a277),
       ),
-      backgroundColor: Color(0xFFC0E0B6FF),
+      backgroundColor: Color(0xff87a277),
 
     );
   }
