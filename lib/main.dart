@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:irrigadorapp/Telas/homepage.dart';
 
 void main() {
-  runApp(const());
+  runApp(MaterialApp(home: HomePage()));
 }
