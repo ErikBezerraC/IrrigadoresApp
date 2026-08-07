@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.help_outline),
+            icon: Icon(Icons.school),
             label: 'Tutorial',
           ),
 
