@@ -60,7 +60,7 @@ class _UsuarioState extends State<Usuario> {
           padding: const EdgeInsets.only(top: 10),
           child: Container(
               width: 360,
-              height: 475,
+              height: 335,
               decoration: BoxDecoration(
                 color: const Color(0xff7a9b6e),
                 borderRadius: BorderRadius.circular(15),
