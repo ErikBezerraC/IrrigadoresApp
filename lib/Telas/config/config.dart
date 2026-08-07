@@ -42,7 +42,7 @@ class _ConfigState extends State<Config> {
           padding: const EdgeInsets.only(top: 10),
           child: Container(
             width: 360,
-            height: 475,
+            height: 410,
             decoration: BoxDecoration(
               color: const Color(0xff7a9b6e),
               borderRadius: BorderRadius.circular(15),
@@ -70,17 +70,6 @@ class _ConfigState extends State<Config> {
                 containerConfig(
                   "Notificações",
                   Icons.notifications,
-                      () {
-
-                  },
-                ),
-
-                linha(),
-                //configurar a segurança de usuario
-
-                containerConfig(
-                  "Segurança",
-                  Icons.lock,
                       () {
 
                   },
