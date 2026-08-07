@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:irrigadorapp/Telas/config.dart';
+import 'package:irrigadorapp/Telas/config/config.dart';
 import 'package:irrigadorapp/Telas/Irrigadores.dart';
+import 'package:irrigadorapp/Telas/tutorial.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,6 +16,7 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     Irrigadores(),
+    Tutorial(),
     Config(),
   ];
 
@@ -54,6 +56,11 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.desktop_windows),
             label: 'Irrigadores',
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.help_outline),
+            label: 'Tutorial',
           ),
 
           BottomNavigationBarItem(

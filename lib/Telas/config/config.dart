@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:irrigadorapp/Telas/config/usuario.dart';
 class Config extends StatefulWidget {
   const Config({super.key});
 
@@ -7,6 +8,7 @@ class Config extends StatefulWidget {
 }
 
 class _ConfigState extends State<Config> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,25 +39,35 @@ class _ConfigState extends State<Config> {
       body: Align(
         alignment: Alignment.topCenter,
         child: Padding(
-          padding: const EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.only(top: 10),
           child: Container(
             width: 360,
-            height: 500,
+            height: 475,
             decoration: BoxDecoration(
               color: const Color(0xff7a9b6e),
               borderRadius: BorderRadius.circular(15),
             ),
             child: Column(
               children: [
-                ContainerConfig(
+                //configurar o perfil do usuario (email, senha, etc)
+                containerConfig(
                   "Usuário",
                   Icons.person,
                       () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Usuario(),
+                      )
+                    );
 
                   },
                 ),
 
-                ContainerConfig(
+                linha(),
+                //configurar notificações
+
+                containerConfig(
                   "Notificações",
                   Icons.notifications,
                       () {
@@ -63,9 +75,56 @@ class _ConfigState extends State<Config> {
                   },
                 ),
 
-                ContainerConfig(
+                linha(),
+                //configurar a segurança de usuario
+
+                containerConfig(
                   "Segurança",
                   Icons.lock,
+                      () {
+
+                  },
+                ),
+
+                linha(),
+                //trocar idioma do app
+
+                containerConfig(
+                  "Idioma",
+                  Icons.language,
+                      () {
+
+                  },
+                ),
+
+                linha(),
+                //saber mais sobre o projeto e o app
+
+                containerConfig(
+                  "Sobre",
+                  Icons.info_outline,
+                      () {
+
+                  },
+                ),
+
+                linha(),
+                //ver consumo de agua, estatisticas e tals
+
+                containerConfig(
+                  "Relatórios",
+                  Icons.bar_chart,
+                      () {
+
+                  },
+                ),
+
+
+                linha(),
+
+                containerConfig(
+                  "Sair",
+                  Icons.door_back_door_outlined,
                       () {
 
                   },
@@ -80,7 +139,7 @@ class _ConfigState extends State<Config> {
   }
 }
 //quanbdo criar as telas colocar o navigator push no lugar do print
-Widget ContainerConfig(
+Widget containerConfig(
     String text,
     IconData icon,
     VoidCallback onTap,
@@ -105,4 +164,12 @@ Widget ContainerConfig(
       size: 18,
     ),
   );
+}
+
+linha(){
+  return Text("___________________________________________________________________________________", style: TextStyle(
+    color: Color(0xff5d7755),
+    fontWeight: FontWeight.bold,
+    fontSize: 9,
+  ),);
 }
