@@ -76,17 +76,6 @@ class _ConfigState extends State<Config> {
                 ),
 
                 linha(),
-                //configurar a segurança de usuario
-
-                containerConfig(
-                  "Segurança",
-                  Icons.lock,
-                      () {
-
-                  },
-                ),
-
-                linha(),
                 //trocar idioma do app
 
                 containerConfig(

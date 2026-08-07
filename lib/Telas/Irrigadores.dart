@@ -35,7 +35,6 @@ class _IrrigadoresState extends State<Irrigadores> {
         ),
       body: Align(
         alignment: Alignment.topCenter,
-        child: Padding()
       ),
       );
 
