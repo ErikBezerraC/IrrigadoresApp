@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 class Irrigadores extends StatefulWidget {
   const Irrigadores({super.key});
@@ -12,9 +14,30 @@ class _IrrigadoresState extends State<Irrigadores> {
     return Scaffold(
       appBar: AppBar(
       backgroundColor: Color(0xff87a277),
+        title: Center(
+        child: Container(
+          width: 350,
+          height: 50,
+          decoration: BoxDecoration(
+            color: Color(0xffa5c994),
+              borderRadius: BorderRadius.circular(15),
+          ),
+            child: Center(
+              child: Text("IrrigaLegal", style: TextStyle(
+              color: Colors.white,
+              fontSize: 30,
+              fontWeight: FontWeight.bold
+            ),),
+    ),
+        ),
+        ),
+        ),
+      body: Align(
+        alignment: Alignment.topCenter,
+        child: Padding()
       ),
-      backgroundColor: Color(0xff87a277),
+      );
 
-    );
   }
 }
+
