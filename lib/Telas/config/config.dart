@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:irrigadorapp/Telas/config/Idioma.dart';
 import 'package:irrigadorapp/Telas/config/notificacoes.dart';
+import 'package:irrigadorapp/Telas/config/sobre.dart';
 import 'package:irrigadorapp/Telas/config/usuario.dart';
 class Config extends StatefulWidget {
   const Config({super.key});
@@ -108,6 +109,13 @@ class _ConfigState extends State<Config> {
                   "Sobre",
                   Icons.info_outline,
                       () {
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Sobre(),
+                            )
+                        );
 
                   },
                 ),
