@@ -24,7 +24,7 @@ class _IrrigadoresState extends State<Irrigadores> {
               borderRadius: BorderRadius.circular(15),
           ),
             child: Center(
-              child: Text("IrrigaLegal", style: TextStyle(
+              child: Text("", style: TextStyle(
               color: Colors.white,
               fontSize: 30,
               fontWeight: FontWeight.bold

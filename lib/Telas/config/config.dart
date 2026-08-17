@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:irrigadorapp/Telas/config/Idioma.dart';
+import 'package:irrigadorapp/Telas/config/notificacoes.dart';
 import 'package:irrigadorapp/Telas/config/usuario.dart';
 class Config extends StatefulWidget {
   const Config({super.key});
@@ -71,6 +73,12 @@ class _ConfigState extends State<Config> {
                   "Notificações",
                   Icons.notifications,
                       () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Notificacoes(),
+                            )
+                        );
 
                   },
                 ),
@@ -82,6 +90,13 @@ class _ConfigState extends State<Config> {
                   "Idioma",
                   Icons.language,
                       () {
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Idioma(),
+                            )
+                        );
 
                   },
                 ),

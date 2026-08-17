@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
 
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.desktop_windows),
+            icon: Icon(Icons.eco_outlined),
             label: 'Irrigadores',
           ),
 

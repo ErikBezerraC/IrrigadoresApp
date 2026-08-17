@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:irrigadorapp/Widget/notificacao.dart';
 
-class Usuario extends StatefulWidget {
-  const Usuario({super.key});
+class Notificacoes extends StatefulWidget {
+  const Notificacoes({super.key});
 
   @override
-  State<Usuario> createState() => _UsuarioState();
+  State<Notificacoes> createState() => _NotificacoesState();
 }
 
-class _UsuarioState extends State<Usuario> {
+class _NotificacoesState extends State<Notificacoes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +34,7 @@ class _UsuarioState extends State<Usuario> {
               const Expanded(
                 child: Center(
                   child: Text(
-                    "Usuário",
+                    "Notificações",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 25,
@@ -48,84 +49,90 @@ class _UsuarioState extends State<Usuario> {
           ),
         ),
       ),
-
       backgroundColor: Color(0xff87a277),
-
       body: Align(
         alignment: Alignment.topCenter,
         child: Padding(
           padding: const EdgeInsets.only(top: 10),
           child: Column(
             children: [
+
               Container(
                 width: 360,
-                height: 135,
+                height: 160,
                 decoration: BoxDecoration(
                   color: const Color(0xff7a9b6e),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Column(
-                  children: [
-                    ListTile(
-                      leading: Icon(Icons.person, color: Colors.white),
-                      title: Text(
-                        "Exemplo Barbosa",
-                        style: const TextStyle(
-                          color: Color(0xffdcdcdc),
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5, left: 5),
+                        child: Text(
+                          'Ultima Notificação',
+                          style: const TextStyle(
+                            color: Color(0xffdcdcdc),
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ),
 
-                    linha(),
-
-                    ListTile(
-                      leading: Icon(Icons.email_outlined, color: Colors.white),
-                      title: Text(
-                        "exemplo@gmail.com",
-                        style: const TextStyle(
-                          color: Color(0xffdcdcdc),
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
                       ),
-                    ),
-                  ],
+
+                      SizedBox(height: 10,),
+
+                      Center(
+                        child: Notificacao(not:'O solo está seco (2/10)', hora: '13:28'),
+                      ),
+                  ]
                 ),
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 10,),
 
               Container(
                 width: 360,
-                height: 200,
+                height: 213,
                 decoration: BoxDecoration(
                   color: const Color(0xff7a9b6e),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Column(
-                  children: [
-                    containerConfig("Alterar Senha", Icons.lock_outline, () {}),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      
+                      containerNot(
+                          'Notificações da Tela de Bloqueio',
+                          Icons.phone_android,
+                              (){
 
-                    linha(),
+                      }),
 
-                    containerConfig(
-                      "Alterar Email",
-                      Icons.markunread_mailbox_outlined,
-                      () {},
-                    ),
+                      linha(),
 
-                    linha(),
+                      containerNot(
+                          'Não Pertube',
+                          Icons.lock_outline,
+                              (){
 
-                    containerConfig(
-                      "Alterar Nome",
-                      Icons.contact_mail_outlined,
-                      () {},
-                    ),
-                  ],
+                          }),
+
+                      linha(),
+
+                      containerNot(
+                          'Histórico de Notificações',
+                          Icons.history,
+                              (){
+
+                          }),
+
+
+                    ]
                 ),
               ),
+
+
             ],
           ),
         ),
@@ -134,7 +141,7 @@ class _UsuarioState extends State<Usuario> {
   }
 }
 
-Widget containerConfig(String text, IconData icon, VoidCallback onTap) {
+Widget containerNot(String text, IconData icon, VoidCallback onTap) {
   return ListTile(
     onTap: onTap,
     leading: Icon(icon, color: Colors.white),
@@ -142,7 +149,7 @@ Widget containerConfig(String text, IconData icon, VoidCallback onTap) {
       text,
       style: const TextStyle(
         color: Color(0xffdcdcdc),
-        fontSize: 22,
+        fontSize: 16,
         fontWeight: FontWeight.bold,
       ),
     ),
@@ -154,13 +161,10 @@ Widget containerConfig(String text, IconData icon, VoidCallback onTap) {
   );
 }
 
-linha() {
-  return Text(
-    "___________________________________________________________________________________",
-    style: TextStyle(
-      color: Color(0xff5d7755),
-      fontWeight: FontWeight.bold,
-      fontSize: 9,
-    ),
-  );
+linha(){
+  return Text("___________________________________________________________________________________", style: TextStyle(
+    color: Color(0xff5d7755),
+    fontWeight: FontWeight.bold,
+    fontSize: 9,
+  ),);
 }
