@@ -65,8 +65,21 @@ class _SobreState extends State<Sobre> {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+
+                      Container(
+                        width: 320,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 5
+                          )
+                        ),
+                      )
+
 
                     ]
                 ),
