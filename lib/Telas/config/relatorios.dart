@@ -43,19 +43,8 @@ class _RelatoriosState extends State<Relatorios> {
     21,
   ];
 
-  List<double> consumoAno = [
-    550, // Janeiro
-    620, // Fevereiro
-    710, // Março
-    680, // Abril
-    750, // Maio
-    820, // Junho
-    900, // Julho
-    870, // Agosto
-    790, // Setembro
-    720, // Outubro
-    650, // Novembro
-    590, // Dezembro
+  List<double> consumoSemana = [
+    75, 80, 78, 82, 76, 79, 80
   ];
 
   @override
@@ -345,7 +334,7 @@ class _RelatoriosState extends State<Relatorios> {
                         Padding(
                           padding: const EdgeInsets.only(top: 5, left: 5),
                           child: Text(
-                            'Consumo do ano',
+                            'Consumo da semana',
                             style: const TextStyle(
                               color: Color(0xffdcdcdc),
                               fontSize: 19,
@@ -364,7 +353,7 @@ class _RelatoriosState extends State<Relatorios> {
                             scrollDirection: Axis.horizontal,
 
                             child: SizedBox(
-                              width: 600,
+                              width: 450,
 
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 20, right: 25,top: 10),
@@ -441,10 +430,10 @@ class _RelatoriosState extends State<Relatorios> {
                                     lineBarsData: [
                                       LineChartBarData(
                                         spots: List.generate(
-                                          consumoAno.length,
+                                          consumoSemana .length,
                                               (index) => FlSpot(
                                               index.toDouble(),
-                                              consumoAno[index]
+                                                  consumoSemana [index]
                                           ),
                                         ),
 
@@ -468,7 +457,7 @@ class _RelatoriosState extends State<Relatorios> {
 
                         Padding(
                           padding: const EdgeInsets.only(top: 5, left: 5),
-                          child: Text('Consumo total: '+consumoTotal(consumoAno)+' L',style: const TextStyle(
+                          child: Text('Consumo total: '+consumoTotal(consumoSemana)+' L',style: const TextStyle(
                             color: Color(0xffdcdcdc),
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
@@ -481,27 +470,6 @@ class _RelatoriosState extends State<Relatorios> {
               ),
 
               SizedBox(height: 20,),
-
-              Center(
-                child: Container(
-                  width: 360,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff7a9b6e),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: containerRela(
-                      'Histórico de Consumo',
-                      Icons.access_time_outlined,
-                          (){
-
-                          }
-
-                  )
-                ),
-              ),
-
-
             ],
           ),
         ),
