@@ -39,6 +39,7 @@ dependencies:
   sqflite:
   path:
   shared_preferences:
+  fl_chart: ^0.69.0
 
 
 dev_dependencies:

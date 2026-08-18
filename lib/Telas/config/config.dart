@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:irrigadorapp/Telas/config/Idioma.dart';
 import 'package:irrigadorapp/Telas/config/notificacoes.dart';
+import 'package:irrigadorapp/Telas/config/relatorios.dart';
 import 'package:irrigadorapp/Telas/config/sobre.dart';
 import 'package:irrigadorapp/Telas/config/usuario.dart';
 class Config extends StatefulWidget {
@@ -127,6 +128,13 @@ class _ConfigState extends State<Config> {
                   "Relatórios",
                   Icons.bar_chart,
                       () {
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Relatorios(),
+                            )
+                        );
 
                   },
                 ),

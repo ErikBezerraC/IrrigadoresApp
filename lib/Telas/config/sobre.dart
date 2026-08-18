@@ -19,25 +19,17 @@ class _SobreState extends State<Sobre> {
             :
         Container
           (
-          width
-              :
-          350
-          ,
-          height
-              :
-          50
-          ,
-          decoration
-              :
+          width: 350,
+          height: 50,
+          decoration:
           BoxDecoration
+            (color
+              :
+          const
+          Color
             (
-            color
-                :
-            const
-            Color
-              (
-                0xffa5c994
-            )
+              0xffa5c994
+          )
             ,
             borderRadius
                 :
