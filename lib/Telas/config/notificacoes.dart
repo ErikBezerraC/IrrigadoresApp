@@ -96,7 +96,7 @@ class _NotificacoesState extends State<Notificacoes> {
 
               Container(
                 width: 360,
-                height: 213,
+                height: 138,
                 decoration: BoxDecoration(
                   color: const Color(0xff7a9b6e),
                   borderRadius: BorderRadius.circular(15),
@@ -129,17 +129,6 @@ class _NotificacoesState extends State<Notificacoes> {
                           });
                         },
                       ),
-
-                      linha(),
-
-                      containerHist(
-                          'Histórico de Notificações',
-                          Icons.history,
-                              (){
-
-                          }),
-
-
                     ]
                 ),
               ),
@@ -193,24 +182,4 @@ linha(){
     fontWeight: FontWeight.bold,
     fontSize: 9,
   ),);
-}
-
-Widget containerHist(String text, IconData icon, VoidCallback onTap) {
-  return ListTile(
-    onTap: onTap,
-    leading: Icon(icon, color: Colors.white),
-    title: Text(
-      text,
-      style: const TextStyle(
-        color: Color(0xffdcdcdc),
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-    trailing: const Icon(
-      Icons.arrow_forward_ios,
-      color: Colors.white,
-      size: 18,
-    ),
-  );
 }

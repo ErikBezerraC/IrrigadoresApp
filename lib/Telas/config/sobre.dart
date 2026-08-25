@@ -13,52 +13,25 @@ class _SobreState extends State<Sobre> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xff87a277)
-        ,
-        title
-            :
-        Container
-          (
+        backgroundColor: const Color(0xff87a277),
+        title: Container(
           width: 350,
           height: 50,
-          decoration:
-          BoxDecoration
-            (color
-              :
-          const
-          Color
-            (
-              0xffa5c994
-          )
-            ,
-            borderRadius
-                :
-            BorderRadius
-                .
-            circular
-              (
-                15
-            )
-            ,
-          )
-          ,
-          child
-              :
-          Row
-            (
-            children
-                :
-            [
-              IconButton
-                (
-                onPressed
-                    :
-                    () {
+          decoration: BoxDecoration(
+            color: const Color(0xffa5c994),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Row(
+            children: [
+              IconButton(
+                onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: const Icon(Icons.arrow_back, color: Colors.white),
+                icon: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
               ),
-
               const Expanded(
                 child: Center(
                   child: Text(
@@ -71,14 +44,12 @@ class _SobreState extends State<Sobre> {
                   ),
                 ),
               ),
-
-              const SizedBox(width: 48), // Equilibra o espaço da seta
+              const SizedBox(width: 48),
             ],
           ),
         ),
       ),
-      backgroundColor: Color(0xff87a277),
-
+      backgroundColor: const Color(0xff87a277),
       body: Align(
         alignment: Alignment.topCenter,
         child: Padding(
@@ -104,9 +75,7 @@ class _SobreState extends State<Sobre> {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 15),
-
                   const Text(
                     "O Irriga Legal é um projeto que busca facilitar e "
                         "automatizar a irrigação por meio de um aplicativo. "
@@ -118,7 +87,7 @@ class _SobreState extends State<Sobre> {
                         "mais eficiente e econômico.",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
