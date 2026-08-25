@@ -24,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color(0xffb6d3a1),
         body: Padding(
           padding: const EdgeInsets.all(32),
           child: Column(
@@ -32,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Text(
                 'Entre ou cadastre-se',
-                style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
               ),
               SizedBox(height: 24),
               TextField(

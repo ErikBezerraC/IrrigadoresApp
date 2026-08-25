@@ -3,7 +3,7 @@ import 'package:irrigadorapp/Telas/config/Idioma.dart';
 import 'package:irrigadorapp/Telas/config/notificacoes.dart';
 import 'package:irrigadorapp/Telas/config/relatorios.dart';
 import 'package:irrigadorapp/Telas/config/sobre.dart';
-import 'package:irrigadorapp/Telas/config/usuario.dart';
+import 'package:irrigadorapp/Telas/config/usuario/usuario.dart';
 class Config extends StatefulWidget {
   const Config({super.key});
 

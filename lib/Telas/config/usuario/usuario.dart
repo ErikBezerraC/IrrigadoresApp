@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:irrigadorapp/Telas/config/usuario/mudar_email.dart';
+import 'package:irrigadorapp/Telas/config/usuario/mudar_nome.dart';
+import 'package:irrigadorapp/Telas/config/usuario/mudar_senha.dart';
 
 class Usuario extends StatefulWidget {
   const Usuario({super.key});
@@ -106,14 +109,32 @@ class _UsuarioState extends State<Usuario> {
                 ),
                 child: Column(
                   children: [
-                    containerConfig("Alterar Senha", Icons.lock_outline, () {}),
+                    containerConfig(
+                        "Alterar Senha",
+                        Icons.lock_outline,
+                            () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const MudarSenha(),
+                                  )
+                              );
+                            }
+                    ),
 
                     linha(),
 
                     containerConfig(
                       "Alterar Email",
                       Icons.markunread_mailbox_outlined,
-                      () {},
+                      () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MudarEmail(),
+                            )
+                        );
+                      },
                     ),
 
                     linha(),
@@ -121,7 +142,14 @@ class _UsuarioState extends State<Usuario> {
                     containerConfig(
                       "Alterar Nome",
                       Icons.contact_mail_outlined,
-                      () {},
+                      () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MudarNome(),
+                            )
+                        );
+                      },
                     ),
                   ],
                 ),
