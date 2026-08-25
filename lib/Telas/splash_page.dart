@@ -21,7 +21,6 @@ class _SplashPageState extends State<SplashPage> {
 
   loadData() async {
     bool status = await prefs.getUserStatus();
-    await Future.delayed(Duration(seconds: 3));
 
     // status == true --> true
     // status == true --> false
