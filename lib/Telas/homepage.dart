@@ -3,7 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:irrigadorapp/Telas/config/config.dart';
 import 'package:irrigadorapp/Telas/Irrigadores.dart';
 import 'package:irrigadorapp/Telas/tutorial.dart';
-
+//colocar uma checagem de irrigadores (msotrar uma mensagem se nao tiver nenhum e fazer a manutenção
+//dessa parte
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 

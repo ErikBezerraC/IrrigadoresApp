@@ -40,6 +40,8 @@ dependencies:
   path:
   shared_preferences:
   fl_chart: ^0.69.0
+  provider:
+  icons_flutter:
 
 
 dev_dependencies:

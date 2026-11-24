@@ -45,32 +45,45 @@ class _IrrigadoresState extends State<Irrigadores> {
             Padding (padding: const EdgeInsets.only(top: 5, left: 5),
               child: Column(
                 children: [
-                  Container(
-                    width: 400,
-                    height: 300,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child:
+                  Center(
+                    child: Container(
+                        width: 380,
+                        height: 300,
+                        decoration: BoxDecoration(
+                          color: Color(0xffa5c994),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child:
                         Row(
                           children: [
-                            Text("Irrigador",
-                              style: TextStyle(
-                                  color: Color(0xff87a277),
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold
-                              ),
-                            ),
+
                           ],
                         )
-                  ),
+                    ),
+                  )
                 ],
               ),
             )
           ],
         )
     ),
+
+
+      floatingActionButton: SizedBox(
+        width: 70,
+        height: 70,
+        child: FloatingActionButton(
+          onPressed: () {
+
+          },
+          backgroundColor: Colors.white,
+          child: const Icon(
+              Icons.add,
+              color:Color(0xff6c9358),
+              size: 32
+          ),
+        ),
+      )
     );
   }
 }
