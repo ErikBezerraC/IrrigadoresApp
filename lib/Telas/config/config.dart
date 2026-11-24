@@ -64,7 +64,6 @@ class _ConfigState extends State<Config> {
                         builder: (context) => const Usuario(),
                       )
                     );
-
                   },
                 ),
 

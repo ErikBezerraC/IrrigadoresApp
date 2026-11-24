@@ -26,7 +26,7 @@ class _IrrigadoresState extends State<Irrigadores> {
             ),
             child: Center(
               child: Text(
-                "",
+                "IrrigaLegal",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
@@ -38,7 +38,24 @@ class _IrrigadoresState extends State<Irrigadores> {
         ),
       ),
       backgroundColor: Color(0xff87a277),
-      body: Align(alignment: Alignment.topCenter),
+      body: Align(alignment: Alignment.topCenter,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Container(
+          width: 360,
+          height: 410,
+          decoration: BoxDecoration(
+            color: const Color(0xff7a9b6e),
+            borderRadius: BorderRadius.circular(15),
+            ),
+        child: Column(
+        children: [
+
+          ]
+          ),
+        ),
+    ),
+    ),
     );
   }
 }
