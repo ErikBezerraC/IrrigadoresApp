@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:irrigadorapp/Telas/config/config_irrigador.dart';
-import 'package:irrigadorapp/db/irrigador_dao.dart';
+import 'package:provider/provider.dart';
+import 'package:irrigadorapp/Telas/config_irrigador.dart';
+import 'package:irrigadorapp/Provider/irrigadores_provider.dart';
 import 'package:irrigadorapp/domain/irrigador.dart';
 
 class Irrigadores extends StatefulWidget {
@@ -11,8 +12,6 @@ class Irrigadores extends StatefulWidget {
 }
 
 class _IrrigadoresState extends State<Irrigadores> {
-  final IrrigadorDao _dao = IrrigadorDao();
-
   Future<void> _abrirConfig({Irrigador? existente}) async {
     final resultado = await Navigator.push<Map<String, dynamic>>(
       context,
@@ -20,25 +19,24 @@ class _IrrigadoresState extends State<Irrigadores> {
         builder: (_) => ConfigIrrigador(irrigadorExistente: existente),
       ),
     );
-
     if (resultado == null) return;
 
-    setState(() {
-      if (existente == null) {
-        _dao.criar(
-          nome: resultado["nome"],
-          tipoFuncionamento: resultado["tipo"],
-          horarios: List<TimeOfDay>.from(resultado["horarios"]),
-          umidadeLimite: (resultado["umidadeLimite"] as num).toDouble(),
-        );
-      } else {
-        existente.nome = resultado["nome"];
-        existente.tipoFuncionamento = resultado["tipo"];
-        existente.horarios = List<TimeOfDay>.from(resultado["horarios"]);
-        existente.umidadeLimite = (resultado["umidadeLimite"] as num).toDouble();
-        _dao.atualizar(existente);
-      }
-    });
+    final provider = context.read<IrrigadoresProvider>();
+
+    if (existente == null) {
+      provider.adicionarIrrigador(
+        nome: resultado["nome"],
+        tipoFuncionamento: resultado["tipo"],
+        horarios: List<TimeOfDay>.from(resultado["horarios"]),
+        umidadeLimite: (resultado["umidadeLimite"] as num).toDouble(),
+      );
+    } else {
+      existente.nome = resultado["nome"];
+      existente.tipoFuncionamento = resultado["tipo"];
+      existente.horarios = List<TimeOfDay>.from(resultado["horarios"]);
+      existente.umidadeLimite = (resultado["umidadeLimite"] as num).toDouble();
+      provider.atualizarIrrigador(existente);
+    }
   }
 
   String _formatarUltima(DateTime? d) {
@@ -49,7 +47,8 @@ class _IrrigadoresState extends State<Irrigadores> {
 
   @override
   Widget build(BuildContext context) {
-    final irrigadores = _dao.todos;
+    final provider = context.watch<IrrigadoresProvider>();
+    final irrigadores = provider.irrigadores;
 
     return Scaffold(
       appBar: AppBar(
@@ -87,7 +86,7 @@ class _IrrigadoresState extends State<Irrigadores> {
           : ListView.builder(
               padding: const EdgeInsets.all(8),
               itemCount: irrigadores.length,
-              itemBuilder: (_, i) => _cardIrrigador(irrigadores[i]),
+              itemBuilder: (_, i) => _cardIrrigador(irrigadores[i], provider.umidadeGlobal),
             ),
       floatingActionButton: SizedBox(
         width: 70,
@@ -101,7 +100,7 @@ class _IrrigadoresState extends State<Irrigadores> {
     );
   }
 
-  Widget _cardIrrigador(Irrigador irr) {
+  Widget _cardIrrigador(Irrigador irr, double umidade) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
       padding: const EdgeInsets.all(16),
@@ -112,7 +111,6 @@ class _IrrigadoresState extends State<Irrigadores> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Linha superior: nome + engrenagem
           Row(
             children: [
               Expanded(
@@ -136,7 +134,6 @@ class _IrrigadoresState extends State<Irrigadores> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Coluna esquerda: última irrigação + anel de umidade
               Expanded(
                 flex: 3,
                 child: Column(
@@ -153,7 +150,7 @@ class _IrrigadoresState extends State<Irrigadores> {
                     const SizedBox(height: 12),
                     Row(
                       children: [
-                        _anelUmidade(irr.umidadeAtual),
+                        _anelUmidade(umidade),
                         const SizedBox(width: 12),
                         const Text("Umidade", style: TextStyle(color: Colors.white)),
                       ],
@@ -161,7 +158,6 @@ class _IrrigadoresState extends State<Irrigadores> {
                   ],
                 ),
               ),
-              // Placeholder da planta (direita)
               Expanded(
                 flex: 2,
                 child: Align(
@@ -177,7 +173,7 @@ class _IrrigadoresState extends State<Irrigadores> {
                     child: const Center(
                       child: Icon(Icons.local_florist, size: 48, color: Colors.white70),
                     ),
-                    // Substitua o Icon por sua Image.asset(...) depois
+                    // Substitua por Image.asset(...) posteriormente
                   ),
                 ),
               ),
