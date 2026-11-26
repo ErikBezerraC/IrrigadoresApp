@@ -1,45 +1,58 @@
 import 'package:flutter/material.dart';
 
-class Irrigador{
-  late int id;
-  late String Irrigador_name;
-  late int umidade;
-  late bool estado;
-  late IconData icon;
-  late String tipo;
-  late DateTime horario;
+class Irrigador {
+  int id;
+  String nome;
+  String tipoFuncionamento; // "horario" ou "umidade"
+  List<TimeOfDay> horarios; // usado quando tipo == "horario"
+  double umidadeLimite; // usado quando tipo == "umidade"
+  double umidadeAtual;
+  DateTime? ultimaIrrigacao;
+  bool estado;
 
-  Irrigador(this.id,this.Irrigador_name,this.umidade,this.estado,this.icon,this.tipo);
+  Irrigador({
+    required this.id,
+    required this.nome,
+    required this.tipoFuncionamento,
+    this.horarios = const [],
+    this.umidadeLimite = 30,
+    this.umidadeAtual = 0,
+    this.ultimaIrrigacao,
+    this.estado = false,
+  });
 
-  Irrigador.Horario(this.id,this.Irrigador_name,this.umidade,this.estado,this.icon,this.tipo,this.horario);
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "nome": nome,
+        "tipoFuncionamento": tipoFuncionamento,
+        "horarios": horarios
+            .map((h) => "${h.hour.toString().padLeft(2, '0')}:${h.minute.toString().padLeft(2, '0')}")
+            .toList(),
+        "umidadeLimite": umidadeLimite,
+        "umidadeAtual": umidadeAtual,
+        "ultimaIrrigacao": ultimaIrrigacao?.toIso8601String(),
+        "estado": estado,
+      };
 
-  Irrigador.fromJson(Map json) {
-    id = json["id"];
-    Irrigador_name = json["Irrigador_name"];
-    umidade = json["umidade"];
-    estado = json["estado"];
-    icon = IconData(
-      json["icon"],
-      fontFamily: 'MaterialIcons',
-    );
-    tipo = json["tipo"];
-
-    if (json["horario"] != null) {
-      horario = DateTime.parse(json["horario"]);
+  factory Irrigador.fromJson(Map<String, dynamic> json) {
+    List<TimeOfDay> hs = [];
+    if (json["horarios"] != null) {
+      for (var h in json["horarios"]) {
+        final parts = (h as String).split(":");
+        hs.add(TimeOfDay(hour: int.parse(parts[0]), minute: int.parse(parts[1])));
+      }
     }
-  }
-
-  Map<String, dynamic> toJson() {
-    Map<String, dynamic> json = {};
-
-    json["id"] = id;
-    json["Irrigador_name"] = Irrigador_name;
-    json["umidade"] = umidade;
-    json["estado"] = estado;
-    json["icon"] = icon.codePoint;
-    json["tipo"] = tipo;
-    json["horario"] = horario.toIso8601String();
-
-    return json;
+    return Irrigador(
+      id: json["id"] ?? 0,
+      nome: json["nome"] ?? "",
+      tipoFuncionamento: json["tipoFuncionamento"] ?? "umidade",
+      horarios: hs,
+      umidadeLimite: (json["umidadeLimite"] ?? 30).toDouble(),
+      umidadeAtual: (json["umidadeAtual"] ?? 0).toDouble(),
+      ultimaIrrigacao: json["ultimaIrrigacao"] != null
+          ? DateTime.parse(json["ultimaIrrigacao"])
+          : null,
+      estado: json["estado"] ?? false,
+    );
   }
 }
