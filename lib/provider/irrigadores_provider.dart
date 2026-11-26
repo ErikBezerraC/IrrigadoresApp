@@ -1,41 +1,57 @@
 import 'package:irrigadorapp/domain/irrigador.dart';
 import 'package:flutter/material.dart';
 
-class IrrigadoresProvider extends ChangeNotifier{
+class IrrigadoresProvider extends ChangeNotifier {
   List<Irrigador> _irrigadores = [];
+  int _nextId = 1;
 
-  List<Irrigador> get irrigadores => _irrigadores;
+  double _umidadeGlobal = 0.0;
+  double get umidadeGlobal => _umidadeGlobal;
 
-  addIrrigador(Irrigador irrigador) {
-    // Se a propriedade não estiver na lista
-    // Posso adicionar a propriedade
-    if (!isFavorite(irrigador)) {
-      _irrigadores.add(irrigador);
-    } else {
-      removeFavorite(irrigador);
-    }
-
+  set umidadeGlobal(double valor) {
+    _umidadeGlobal = valor.clamp(0, 100);
     notifyListeners();
   }
 
-  removeFavorite(Irrigador irrigador) {
-    for (int i = 0; i < _irrigadores.length; i++) {
-      if (_irrigadores[i].id == irrigador.id) {
-        _irrigadores.removeAt(i);
-        break;
-      }
+  List<Irrigador> get irrigadores => List.unmodifiable(_irrigadores);
+
+  Irrigador adicionarIrrigador({
+    required String nome,
+    required String tipoFuncionamento,
+    List<TimeOfDay> horarios = const [],
+    double umidadeLimite = 30,
+  }) {
+    final novo = Irrigador(
+      id: _nextId++,
+      nome: nome,
+      tipoFuncionamento: tipoFuncionamento,
+      horarios: horarios,
+      umidadeLimite: umidadeLimite,
+      umidadeAtual: _umidadeGlobal,
+    );
+    _irrigadores.add(novo);
+    notifyListeners();
+    return novo;
+  }
+
+  void atualizarIrrigador(Irrigador irrigador) {
+    final idx = _irrigadores.indexWhere((i) => i.id == irrigador.id);
+    if (idx >= 0) {
+      _irrigadores[idx] = irrigador;
+      notifyListeners();
     }
   }
 
-  bool isFavorite(Irrigador irrigador) {
-    // Procurando a propriedade na lista
-    for (var prop in _irrigadores) {
-      if (irrigador.id == irrigador.id) {
-        return true;
-      }
-    }
-
-    return false;
+  void removerIrrigador(int id) {
+    _irrigadores.removeWhere((i) => i.id == id);
+    notifyListeners();
   }
 
+  Irrigador? buscarPorId(int id) {
+    try {
+      return _irrigadores.firstWhere((i) => i.id == id);
+    } catch (_) {
+      return null;
+    }
+  }
 }
